@@ -13,6 +13,12 @@ class ChatScreen extends StatelessWidget {
           child: const Text('This works!'),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(
+          Icons.add,
+        ),
+      ),
     );
   }
 }
