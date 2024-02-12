@@ -37,6 +37,12 @@ class _AuthFormState extends State<AuthForm> {
                   height: 10,
                 ),
                 ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                        Theme.of(context).primaryColor),
+                    foregroundColor:
+                        const MaterialStatePropertyAll(Colors.white),
+                  ),
                   onPressed: () {},
                   child: const Text(
                     'Login',
