@@ -16,9 +16,9 @@ class _AuthFormState extends State<AuthForm> {
           borderRadius: BorderRadius.circular(4),
         ),
         margin: const EdgeInsets.all(16),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Form(
+        child: Form(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
