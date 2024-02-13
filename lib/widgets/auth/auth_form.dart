@@ -8,7 +8,7 @@ class AuthForm extends StatefulWidget {
     String username,
     String password,
     AuthMode authMode,
-    BuildContext context,
+    BuildContext ctx,
   ) submitForm;
   const AuthForm({
     super.key,
