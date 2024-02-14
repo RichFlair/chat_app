@@ -39,14 +39,17 @@ class _AuthScreenState extends State<AuthScreen> {
           password: password,
         );
         // after creating the user add data to Firestore
-        // FirebaseFirestore.instance
-        //     .collection('users')
-        //     .doc(authResult.user?.uid)
-        //     .set({
-        //   'username': username,
-        //   'email': email,
-        // });
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(authResult.user?.uid)
+            .set({
+          'username': username,
+          'email': email,
+        });
       }
+      setState(() {
+        isLoading = false;
+      });
     } on PlatformException catch (error) {
       var message = 'An error occured, please check your credentials';
       if (error.message != null) {
