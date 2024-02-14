@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 enum AuthMode { signup, login }
 
 class AuthForm extends StatefulWidget {
+  final bool isLoading;
   final void Function(
     String email,
     String username,
@@ -13,6 +14,7 @@ class AuthForm extends StatefulWidget {
   const AuthForm({
     super.key,
     required this.submitForm,
+    required this.isLoading,
   });
 
   @override
@@ -105,30 +107,34 @@ class _AuthFormState extends State<AuthForm> {
                 const SizedBox(
                   height: 10,
                 ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(
-                        Theme.of(context).primaryColor),
-                    foregroundColor:
-                        const MaterialStatePropertyAll(Colors.white),
+                if (widget.isLoading)
+                  const Center(child: CircularProgressIndicator()),
+                if (!widget.isLoading)
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(
+                          Theme.of(context).primaryColor),
+                      foregroundColor:
+                          const MaterialStatePropertyAll(Colors.white),
+                    ),
+                    onPressed: _submit,
+                    child:
+                        Text(_authMode == AuthMode.login ? 'LOGIN' : 'SIGN UP'),
                   ),
-                  onPressed: _submit,
-                  child:
-                      Text(_authMode == AuthMode.login ? 'LOGIN' : 'SIGN UP'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    // Switching the auth mode between login and signup
-                    setState(() {
-                      _authMode = _authMode == AuthMode.login
-                          ? AuthMode.signup
-                          : AuthMode.login;
-                    });
-                  },
-                  child: Text(_authMode == AuthMode.login
-                      ? 'CREATE AN ACCOUNT'
-                      : 'AlREADY HAVE AN ACCOUNT? LOG IN'),
-                ),
+                if (!widget.isLoading)
+                  TextButton(
+                    onPressed: () {
+                      // Switching the auth mode between login and signup
+                      setState(() {
+                        _authMode = _authMode == AuthMode.login
+                            ? AuthMode.signup
+                            : AuthMode.login;
+                      });
+                    },
+                    child: Text(_authMode == AuthMode.login
+                        ? 'CREATE AN ACCOUNT'
+                        : 'AlREADY HAVE AN ACCOUNT? LOG IN'),
+                  ),
               ],
             ),
           ),
