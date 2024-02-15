@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -17,6 +18,7 @@ class _NewMessageState extends State<NewMessage> {
     FirebaseFirestore.instance.collection('chat').add({
       'text': _typedMessage,
       'createdAt': Timestamp.now(),
+      'userId': FirebaseAuth.instance.currentUser!.uid,
     });
     _controller.clear();
   }
