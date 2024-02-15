@@ -37,7 +37,13 @@ class ChatScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: const Messages(),
+      body: Container(
+        child: const Column(
+          children: [
+            Expanded(child: Messages()),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           FirebaseFirestore.instance
