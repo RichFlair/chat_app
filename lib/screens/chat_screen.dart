@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../widgets/chat/messages.dart';
+import '../widgets/chat/new_message.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -41,19 +41,8 @@ class ChatScreen extends StatelessWidget {
         child: const Column(
           children: [
             Expanded(child: Messages()),
+            NewMessage(),
           ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          FirebaseFirestore.instance
-              .collection("chats/VeS3TNmBWTduirHaGs1x/messages")
-              .add(
-            {"text": "Hello World!"},
-          );
-        },
-        child: const Icon(
-          Icons.add,
         ),
       ),
     );
