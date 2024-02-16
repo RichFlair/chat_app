@@ -32,6 +32,7 @@ class _NewMessageState extends State<NewMessage> {
         children: [
           Expanded(
             child: TextField(
+              maxLines: null,
               controller: _controller,
               keyboardType: TextInputType.multiline,
               decoration: const InputDecoration(hintText: 'Send a message...'),
