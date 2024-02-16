@@ -19,15 +19,15 @@ class MessageBubble extends StatelessWidget {
           decoration: BoxDecoration(
             color: isMe ? Theme.of(context).primaryColor : Colors.pink,
             borderRadius: BorderRadius.only(
-              topLeft: const Radius.circular(10),
-              topRight: const Radius.circular(10),
+              topLeft: const Radius.circular(14),
+              topRight: const Radius.circular(14),
               bottomLeft:
-                  !isMe ? const Radius.circular(0) : const Radius.circular(10),
+                  !isMe ? const Radius.circular(0) : const Radius.circular(14),
               bottomRight:
-                  isMe ? const Radius.circular(0) : const Radius.circular(10),
+                  isMe ? const Radius.circular(0) : const Radius.circular(14),
             ),
           ),
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
           margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           child: Text(
             message,
