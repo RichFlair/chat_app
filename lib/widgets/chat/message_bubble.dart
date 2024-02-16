@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class MessageBubble extends StatelessWidget {
+  final Key keey;
   final String message;
   final bool isMe;
   const MessageBubble({
     required this.message,
     required this.isMe,
+    required this.keey,
     super.key,
   });
 
