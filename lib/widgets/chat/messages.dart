@@ -29,6 +29,7 @@ class Messages extends StatelessWidget {
               isMe: messages[index]['userId'] ==
                   FirebaseAuth.instance.currentUser!.uid,
               keey: ValueKey(messages[index].id),
+              userName: messages[index]['userName'],
             );
           },
         );
