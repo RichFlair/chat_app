@@ -34,11 +34,14 @@ class MessageBubble extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
           margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           child: Column(
+            crossAxisAlignment:
+                isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
             children: [
               Text(
                 userName,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
               Text(
