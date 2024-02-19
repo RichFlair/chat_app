@@ -15,13 +15,13 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   final _auth = FirebaseAuth.instance;
   var isLoading = false;
+  late BuildContext _ctx;
 
   void _submitAuthForm(
     String email,
     String username,
     String password,
     AuthMode authMode,
-    BuildContext ctx,
   ) async {
     // implement authentication
     try {
@@ -55,32 +55,31 @@ class _AuthScreenState extends State<AuthScreen> {
       if (error.message != null) {
         message = error.message!;
       }
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        SnackBar(
-          content: Text(message),
-        ),
-      );
+      _showSnackBar(message);
       setState(() {
         isLoading = false;
       });
     } catch (er) {
       print(er);
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        SnackBar(
-          content: Text(
-            er.toString(),
-          ),
-          backgroundColor: Theme.of(ctx).colorScheme.error,
-        ),
-      );
+      _showSnackBar(er.toString());
       setState(() {
         isLoading = false;
       });
     }
   }
 
+  void _showSnackBar(errorMessage) {
+    ScaffoldMessenger.of(_ctx).showSnackBar(
+      SnackBar(
+        content: Text(errorMessage),
+        backgroundColor: Theme.of(_ctx).colorScheme.error,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    _ctx = context;
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: AuthForm(

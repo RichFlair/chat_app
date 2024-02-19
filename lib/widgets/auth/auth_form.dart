@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../picker/image_picker_form.dart';
@@ -11,7 +13,6 @@ class AuthForm extends StatefulWidget {
     String username,
     String password,
     AuthMode authMode,
-    BuildContext ctx,
   ) submitForm;
   const AuthForm({
     super.key,
@@ -28,19 +29,41 @@ class _AuthFormState extends State<AuthForm> {
   var _email = '';
   var _username = '';
   var _password = '';
+  File? _userImageFile;
   AuthMode _authMode = AuthMode.login;
+
+  void onImagePicked(File pickedImage) {
+    _userImageFile = pickedImage;
+  }
 
   void _submit() {
     final isValidated = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
-    if (isValidated) {
+    if (_userImageFile == null && _authMode == AuthMode.signup) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('No Image Selected!'),
+          content: const Text('Please select an image to continue.'),
+          actions: [
+            TextButton(
+              child: const Text('Okay'),
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+    if (isValidated && _authMode == AuthMode.signup) {
       _formKey.currentState!.save();
       widget.submitForm(
         _email.trim(),
         _username.trim(),
         _password,
         _authMode,
-        context,
       );
     }
   }
@@ -60,7 +83,8 @@ class _AuthFormState extends State<AuthForm> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (_authMode == AuthMode.signup) const ImagePickerForm(),
+                if (_authMode == AuthMode.signup)
+                  ImagePickerForm(onImagePicked: onImagePicked),
                 // Email textfield
                 TextFormField(
                   key: const ValueKey('email'),
