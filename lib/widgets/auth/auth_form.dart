@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../picker/image_picker_form.dart';
+
 enum AuthMode { signup, login }
 
 class AuthForm extends StatefulWidget {
@@ -58,6 +60,7 @@ class _AuthFormState extends State<AuthForm> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                const ImagePickerForm(),
                 // Email textfield
                 TextFormField(
                   key: const ValueKey('email'),
