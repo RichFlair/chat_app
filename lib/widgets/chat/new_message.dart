@@ -41,7 +41,12 @@ class _NewMessageState extends State<NewMessage> {
               maxLines: null,
               controller: _controller,
               keyboardType: TextInputType.multiline,
-              decoration: const InputDecoration(hintText: 'Send a message...'),
+              decoration: const InputDecoration(
+                hintText: 'Send a message...',
+                hintStyle: TextStyle(
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
               onChanged: (value) {
                 setState(() {
                   _typedMessage = value;
