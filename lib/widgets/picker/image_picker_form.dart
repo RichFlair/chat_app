@@ -16,8 +16,9 @@ class _ImagePickerFormState extends State<ImagePickerForm> {
   void _pickImage() async {
     final pickedImage =
         await ImagePicker().pickImage(source: ImageSource.camera);
+    final imageFile = File(pickedImage!.path);
     setState(() {
-      _pickedImage = pickedImage as File;
+      _pickedImage = imageFile;
     });
   }
 
