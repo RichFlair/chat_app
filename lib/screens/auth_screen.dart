@@ -38,7 +38,7 @@ class _AuthScreenState extends State<AuthScreen> {
           email: email,
           password: password,
         );
-        // after creating the user add data to Firestore
+        // adding user data to Firestore
         await FirebaseFirestore.instance
             .collection('users')
             .doc(authResult.user?.uid)
