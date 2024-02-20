@@ -12,6 +12,7 @@ class AuthForm extends StatefulWidget {
     String email,
     String username,
     String password,
+    File userImageFile,
     AuthMode authMode,
   ) submitForm;
   const AuthForm({
@@ -63,6 +64,7 @@ class _AuthFormState extends State<AuthForm> {
         _email.trim(),
         _username.trim(),
         _password,
+        _userImageFile!,
         _authMode,
       );
     }
