@@ -46,9 +46,11 @@ class _AuthScreenState extends State<AuthScreen> {
         final ref = FirebaseStorage.instance
             .ref()
             .child('user_image')
-            .child(authResult.user!.uid);
+            .child('${authResult.user!.uid}.jpg');
 
         await ref.putFile(userImageFile).whenComplete(() => null);
+
+        final userImageUrl = await ref.getDownloadURL();
 
         // adding user data to Firestore
         await FirebaseFirestore.instance
@@ -57,6 +59,7 @@ class _AuthScreenState extends State<AuthScreen> {
             .set({
           'username': username,
           'email': email,
+          'userImage': userImageUrl,
         });
       }
       setState(() {
