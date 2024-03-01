@@ -29,6 +29,7 @@ class NotificationService {
       case 'selectNotification':
         final String? subject = call.arguments['subject'];
         // Handle the notification
+        print(subject);
         break;
       default:
         throw PlatformException(
