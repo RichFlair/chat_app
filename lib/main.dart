@@ -4,16 +4,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'firebase_options.dart';
-
 import './screens/auth_screen.dart';
-import 'services/notifications_service.dart';
-
-NotificationService notificationService = NotificationService();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await notificationService.initialize();
   runApp(const MyApp());
 }
 
