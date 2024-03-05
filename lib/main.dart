@@ -10,7 +10,7 @@ import './screens/auth_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  FirebaseApi().initFirebase;
+  FirebaseApi().initFirebase();
   runApp(const MyApp());
 }
 
